@@ -114,3 +114,45 @@ Replacing the two broken tools turned out to simplify the pipeline rather than c
 - Decide on voiceover: synthetic vs the user's own voice.
 - `brew install ffmpeg`.
 - Nothing has been posted. Nothing will be posted without explicit confirmation.
+
+---
+
+## Session 2 — 2026-09-12 (continued)
+
+### 2.1 Built R1 by hand, then got corrected
+
+**What:** Produced the R1 assets (handwritten timetable, dark calendar UI, .ics code scene, profile mark) by hand-writing HTML/CSS, rendering at 1080x1920 through the browser, and generating voiceover with macOS `say` (Rishi, en_IN). Also generated a genuinely valid 15-event recurring .ics file so the demonstrated output was real, not mocked.
+
+**Why it was wrong:** the user pays for Gemini, ChatGPT, and Google Flow, and pointed out I was hand-building assets instead of using them. Correct call. Hand-coded HTML gives accurate UI but it is slow and it is not what a paid generative stack is for.
+
+**Kept from that work:** the .ics generator (real output, still the honest core of R1), the profile mark, and the voiceover pipeline. Discarded the approach of hand-building every visual.
+
+### 2.2 Browser session lost on resume
+
+The session resume killed the headed browser daemon (PID changed, all tabs and cookies gone). Relaunched with `connect --force-restart`. The underlying Chrome profile retained Google and Instagram logins, so nothing needed re-authenticating.
+
+**Learning for future sessions:** do not assume the browser daemon survives a session resume. Re-check `browse status` and expect mode to drop from `headed` to `launched`.
+
+### 2.3 Flow app entry point
+
+`flow.google.com/tools/flow` 404s. The working app URL is **`labs.google/fx/tools/flow`** (which then redirects to `flow.google.com/`). The `flow.google.com/about` page is marketing only.
+
+### 2.4 Two blocking findings in Google Flow
+
+**A. The signed-in Google account is not the user's.**
+Flow reports the active account as **Swathi — bojanapuswathi12@gmail.com**, with **1,050 Google Flow credits**. The user's own address is praneeth132006b@gmail.com. Paused rather than spending someone else's credits. Needs the user to confirm which account to use.
+
+**B. Visible watermarking cannot be disabled.**
+Flow's own settings state: *"Visible watermarking is required in your region."* Every Veo output from this account will carry a visible watermark. Not a toggle, not a tier upgrade within this plan. Relevant because it changes what Veo is usable for.
+
+**C. Plan mismatch.** myaccount.google.com reports **Google AI Plus**, while Flow displays a **PRO** badge. Did not resolve which governs the actual model and quota limits. Credits (1,050) are the number that matters in practice.
+
+### 2.5 Standing constraint on Veo for this niche
+
+Veo generates cinematic footage. It does not generate accurate software interfaces. For a niche built on "here is a real AI workflow," the core asset is screen content showing a real tool producing a real result. Veo cannot produce that, and asking it to would mean inventing fake UI for an account whose entire promise is showing real output.
+
+**Where Veo is genuinely strong for this account:** cold-open hook shots, visual metaphor, transitions, and b-roll between demo steps. That is a real upgrade over hand-coded scenes and worth using.
+
+**Where it is not:** the demo itself.
+
+This is a constraint on format, not a reason to avoid the tool.

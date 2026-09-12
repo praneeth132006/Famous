@@ -1,0 +1,51 @@
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#0A0B0A}
+.w{width:1080px;height:1920px;padding:150px 52px;display:flex;flex-direction:column;justify-content:center}
+.win{background:#101208;border:2px solid #262B1C;border-radius:20px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.7)}
+.tb{background:#171A10;padding:20px 26px;display:flex;align-items:center;gap:12px;border-bottom:2px solid #262B1C}
+.dot{width:15px;height:15px;border-radius:50%}
+.fn{margin-left:16px;font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:25px;color:#9AA48C}
+pre{padding:34px 30px;font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:26px;line-height:1.62;color:#D9E0CC;white-space:pre}
+.k{color:#6E7A5E}.v{color:#C6F432;font-weight:600}.r{color:#F0F3EA;font-weight:600}
+.cap{margin-top:52px;text-align:center;font-family:-apple-system,"SF Pro Display",sans-serif}
+.cap b{display:block;font-size:60px;color:#F4F6F0;font-weight:800;letter-spacing:-1.5px}
+.cap i{display:block;font-size:34px;color:#C6F432;font-style:normal;font-weight:600;margin-top:16px}
+</style>
+<div class="w"><div class="win">
+<div class="tb"><div class="dot" style="background:#F05B4F"></div><div class="dot" style="background:#F7BD44"></div><div class="dot" style="background:#5FCB43"></div><div class="fn">timetable.ics</div></div>
+<pre><span class="k">BEGIN:</span><span class="r">VCALENDAR</span>
+<span class="k">X-WR-CALNAME:</span><span class="v">Sem 5 - CSE B</span>
+
+<span class="k">BEGIN:</span><span class="r">VEVENT</span>
+<span class="k">DTSTART:</span>20260915T<span class="v">090000</span>
+<span class="k">DTEND:</span>  20260915T<span class="v">100000</span>
+<span class="k">RRULE:</span>  FREQ=<span class="v">WEEKLY</span>;COUNT=<span class="v">16</span>
+<span class="k">SUMMARY:</span><span class="v">Data Structures</span>
+<span class="k">LOCATION:</span>Room 304
+<span class="k">END:</span><span class="r">VEVENT</span>
+
+<span class="k">...</span> <span class="v">14 more events</span>
+<span class="k">END:</span><span class="r">VCALENDAR</span></pre>
+</div>
+<div class="cap"><b>15 events · 16 weeks</b><i>zero typing</i></div>
+</div>
+<style>
+.ovl-hook{position:fixed;top:0;left:0;right:0;padding:120px 64px 90px;z-index:99;
+  background:linear-gradient(180deg,rgba(10,11,10,1) 0%,rgba(10,11,10,.99) 68%,rgba(10,11,10,0) 100%);
+  font-family:-apple-system,"SF Pro Display",Helvetica,sans-serif;text-align:center}
+.ovl-hook b{display:block;font-size:84px;line-height:1.02;font-weight:800;color:#F4F6F0;letter-spacing:-2.6px}
+.ovl-hook b em{font-style:normal;color:#C6F432}
+.ovl-cap{position:fixed;left:52px;right:52px;bottom:452px;z-index:99;text-align:center;
+  font-family:-apple-system,"SF Pro Display",Helvetica,sans-serif}
+.ovl-pill{display:inline-block;background:rgba(8,9,8,.97);border:2px solid rgba(198,244,50,.34);
+  border-radius:24px;padding:28px 40px;font-size:54px;font-weight:800;color:#F4F6F0;letter-spacing:-1.4px;line-height:1.16;
+  box-shadow:0 22px 60px rgba(0,0,0,.75)}
+.ovl-pill i{font-style:normal;color:#C6F432}
+.ovl-sub{display:block;margin-top:20px;font-size:34px;font-weight:600;color:#AEB8A0;letter-spacing:-.4px;
+  text-shadow:0 3px 16px rgba(0,0,0,1),0 0 34px rgba(0,0,0,.95)}
+</style>
+
+<div class="ovl-cap"><span class="ovl-pill">One prompt. <i>Zero typing.</i></span></div>
+
+<style>.cap{display:none!important}</style>

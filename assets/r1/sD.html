@@ -1,0 +1,78 @@
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#0A0B0A;font-family:-apple-system,"SF Pro Display",Helvetica,sans-serif}
+.app{width:1080px;height:1920px;padding:110px 46px 60px;display:flex;flex-direction:column}
+.bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.mon{font-size:60px;font-weight:700;color:#F4F6F0;letter-spacing:-1.5px}
+.pill{font-size:27px;color:#0A0B0A;background:#C6F432;padding:11px 24px;border-radius:100px;font-weight:600}
+.wk{font-size:29px;color:#7C8274;margin-bottom:34px}
+.grid{flex:1;display:grid;grid-template-columns:92px repeat(5,1fr);gap:9px}
+.hh{font-size:25px;color:#7C8274;font-weight:600;text-align:center;padding-bottom:16px;border-bottom:2px solid #22251F}
+.hd{font-size:25px;color:#F4F6F0;font-weight:700;text-align:center;padding-bottom:16px;border-bottom:2px solid #22251F}
+.hd span{display:block;font-size:20px;color:#7C8274;font-weight:500;margin-top:5px}
+.tm{font-size:23px;color:#585D52;text-align:right;padding-right:14px;padding-top:10px}
+.cell{border-top:1px solid #191C17}
+.ev{background:#C6F432;color:#0A0B0A;border-radius:11px;padding:14px 12px;font-size:22px;font-weight:700;height:100%;display:flex;flex-direction:column;justify-content:center;line-height:1.2}
+.ev.lab{background:#1E2A14;color:#C6F432;border:2px solid #3D5227}
+.ev small{font-weight:600;opacity:.72;font-size:18px;margin-top:5px;display:block}
+.lunch{background:#141712;border-radius:11px;color:#585D52;font-size:21px;display:flex;align-items:center;justify-content:center;letter-spacing:3px}
+</style>
+<div class="app">
+<div class="bar"><div class="mon">September</div><div class="pill">15 events</div></div>
+<div class="wk">Week of 15 Sept · Sem 5, CSE-B</div>
+<div class="grid">
+  <div class="hh"></div>
+  <div class="hd">MON<span>15</span></div><div class="hd">TUE<span>16</span></div><div class="hd">WED<span>17</span></div><div class="hd">THU<span>18</span></div><div class="hd">FRI<span>19</span></div>
+
+  <div class="tm">9 AM</div>
+  <div class="cell"><div class="ev">Data Structures<small>Room 304</small></div></div>
+  <div class="cell"><div class="ev">DBMS<small>Room 304</small></div></div>
+  <div class="cell"><div class="ev">Operating Sys<small>Room 304</small></div></div>
+  <div class="cell"></div>
+  <div class="cell"><div class="ev">Computer Net<small>Room 304</small></div></div>
+
+  <div class="tm">10 AM</div>
+  <div class="cell"></div>
+  <div class="cell"><div class="ev">Maths III<small>Room 304</small></div></div>
+  <div class="cell"></div>
+  <div class="cell"><div class="ev">Maths III<small>Room 304</small></div></div>
+  <div class="cell"></div>
+
+  <div class="tm">11 AM</div>
+  <div class="cell"><div class="ev">DBMS<small>Room 304</small></div></div>
+  <div class="cell"></div>
+  <div class="cell"><div class="ev">Data Structures<small>Room 304</small></div></div>
+  <div class="cell"><div class="ev">Computer Net<small>Room 304</small></div></div>
+  <div class="cell"><div class="ev">Operating Sys<small>Room 304</small></div></div>
+
+  <div class="tm">12 PM</div>
+  <div class="cell"><div class="lunch">L U N C H</div></div>
+  <div class="cell"><div class="lunch">L U N C H</div></div>
+  <div class="cell"><div class="lunch">L U N C H</div></div>
+  <div class="cell"><div class="lunch">L U N C H</div></div>
+  <div class="cell"><div class="lunch">L U N C H</div></div>
+
+  <div class="tm">2 PM</div>
+  <div class="cell"><div class="ev lab">OS Lab<small>Lab 2 · 2h</small></div></div>
+  <div class="cell"><div class="ev lab">DS Lab<small>Lab 1 · 2h</small></div></div>
+  <div class="cell"><div class="ev">Computer Net<small>Room 304</small></div></div>
+  <div class="cell"><div class="ev lab">DBMS Lab<small>Lab 3 · 2h</small></div></div>
+  <div class="cell"><div class="ev lab">Project<small>Room 304 · 2h</small></div></div>
+</div></div>
+<style>
+.ovl-hook{position:fixed;top:0;left:0;right:0;padding:120px 64px 90px;z-index:99;
+  background:linear-gradient(180deg,rgba(10,11,10,1) 0%,rgba(10,11,10,.99) 68%,rgba(10,11,10,0) 100%);
+  font-family:-apple-system,"SF Pro Display",Helvetica,sans-serif;text-align:center}
+.ovl-hook b{display:block;font-size:84px;line-height:1.02;font-weight:800;color:#F4F6F0;letter-spacing:-2.6px}
+.ovl-hook b em{font-style:normal;color:#C6F432}
+.ovl-cap{position:fixed;left:52px;right:52px;bottom:452px;z-index:99;text-align:center;
+  font-family:-apple-system,"SF Pro Display",Helvetica,sans-serif}
+.ovl-pill{display:inline-block;background:rgba(8,9,8,.97);border:2px solid rgba(198,244,50,.34);
+  border-radius:24px;padding:28px 40px;font-size:54px;font-weight:800;color:#F4F6F0;letter-spacing:-1.4px;line-height:1.16;
+  box-shadow:0 22px 60px rgba(0,0,0,.75)}
+.ovl-pill i{font-style:normal;color:#C6F432}
+.ovl-sub{display:block;margin-top:20px;font-size:34px;font-weight:600;color:#AEB8A0;letter-spacing:-.4px;
+  text-shadow:0 3px 16px rgba(0,0,0,1),0 0 34px rgba(0,0,0,.95)}
+</style>
+
+<div class="ovl-cap"><span class="ovl-pill">Imports in <i>one tap</i></span><span class="ovl-sub">Google Calendar · Apple Calendar</span></div>
