@@ -195,3 +195,37 @@ Generation is solved. Getting the file out is not. Everything tried:
 ### 2.8 Still true from earlier
 
 ffmpeg 9.0.1 is installed and has zoompan, xfade, overlay, concat, amix, adelay. It does **not** have `drawtext` (no libfreetype), so all text must be composited as rendered PNG layers rather than burned by ffmpeg. Premium macOS voices are still not installed; only the 43 basic voices are available, and Rishi (en_IN) is the best fit for this audience.
+
+### 2.9 Root cause: the browse tool is the wrong harness for a media pipeline
+
+Chased the extraction failure to the bottom. Three independent findings, all structural:
+
+**1. Downloads are impossible, by architecture.**
+`ps aux` shows the browser runs on `--user-data-dir=/var/folders/.../playwright_chromiumdev_profile-*`. It is a **Playwright ephemeral profile**. Playwright intercepts download events and discards them unless the controlling script handles them explicitly. No file will ever reach disk from this browser, and a human clicking the button inside that window changes nothing — the interception is below the UI. My earlier request that the user click Download was wrong and wasted their time.
+
+**2. Logins do not survive a daemon restart.**
+The profile is recreated on each `connect --force-restart` and on crash recovery. Google and Instagram sessions were present, then gone after the restarts forced by the daemon crash. Any workflow requiring a stable login across a long session will keep breaking here.
+
+**3. The CDP escape hatches are deliberately closed.**
+`browse/src/cdp-allowlist.ts` is deny-default and explicitly excludes `Network.getResponseBody`, `Fetch.*`, `Page.addScriptToEvaluateOnNewDocument`, `Browser.*` and `Runtime.evaluate`, with a comment naming data exfiltration as the reason. These are exactly the methods that would allow pulling the media out. This is a security control working as designed, not a bug, and it should not be worked around.
+
+**Also learned:** Flow's player renders into `<canvas class="video-canvas">`. There is no `<video>` element at any point, in any shadow root. Every DOM-based extraction attempt was doomed from the start.
+
+**Conclusion:** gstack `browse` is built to read and test web pages. It is not built to operate a creative suite and move megabytes of generated media. Continuing to automate Flow through it is wasted effort.
+
+**Recommended setups, in order:**
+1. **Install Aside** (`aside.com`, macOS 15+). gstack's preferred driver. It controls the user's real browser with real, persistent sessions — which fixes both the login loss and, being a real browser, the downloads.
+2. **User runs Flow in their own Chrome.** Generate and download there; the agent handles everything downstream. Reliable today, no install.
+
+Either way, the division of labour is the same: Flow generation and download happen in a real browser; assembly, captions, voiceover, covers, copy and scheduling stay automated.
+
+### 2.10 What is actually banked
+
+- Flow settings that work, and proof the output is good (§2.6).
+- One generated hook clip, sitting in Flow project `0f639106-4332-4acd-8423-b98aba8c75dc`, not yet downloaded.
+- A real 15-event `.ics` generator (`assets/r1/timetable.ics`).
+- Profile mark (`assets/brand/pfp.png`), rendered and ready.
+- Voiceover pipeline via macOS `say`, segmented for exact scene sync.
+- Scene renderer via HTML → 1080x1920 PNG, still useful for anything text-heavy since ffmpeg here has no `drawtext`.
+
+Nothing has been posted. The Instagram account @one.taskai is created, still 0 posts, no bio, no profile photo set.
