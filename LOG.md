@@ -156,3 +156,42 @@ Veo generates cinematic footage. It does not generate accurate software interfac
 **Where it is not:** the demo itself.
 
 This is a constraint on format, not a reason to avoid the tool.
+
+### 2.6 Switched to Google Flow for generation — it works, and it is much better
+
+**Decisions taken (user answered both):** use Swathi's account and its 1,050 credits; I screen-record real workflows on the Mac for the demo segments.
+
+**Flow setup that works:**
+- App URL: `labs.google/fx/tools/flow` (redirects to `flow.google.com`). `flow.google.com/tools/flow` 404s.
+- Created a separate project `0f639106-4332-4acd-8423-b98aba8c75dc` rather than working inside Swathi's existing June projects.
+- Settings: **Video · Omni 1.1 Flash · 720p · 8s · 9:16 · x1 = 12 credits per clip.** At 1,050 credits that is ~87 clips, which is far more than the sprint needs.
+- The prompt input is a **contenteditable div**, not a textarea. Focus it via JS and place the caret before typing, or the text never lands.
+- A changelog modal blocks the whole UI on first load. Dismiss "Get started" first.
+- Most controls are generic divs with no usable text selectors. Driving them by `document.elementFromPoint(x,y).click()` off a screenshot is reliable; text selectors are not.
+
+**Result:** generated the R1 hook shot first try. Overhead macro of a real handwritten timetable on a dark desk, blue ink lifting off and reorganizing into glowing lime calendar blocks. 8s, 720x1280, genuinely cinematic. Far better than the hand-built HTML scenes it replaces.
+
+### 2.7 Blocked: cannot extract the MP4 out of Flow
+
+Generation is solved. Getting the file out is not. Everything tried:
+
+| Attempt | Result |
+|---|---|
+| `download` button → 1080p Upscaled | Menu opens and the click registers, but no file appears anywhere on disk |
+| Project menu → "Download project" | Same, nothing written |
+| Read `<video>.src` from the DOM | Element exists only transiently; `querySelectorAll('video')` returns 0 moments later |
+| Deep walk through all shadow roots | `count: 0` |
+| Click play first, then read the element | Still 0 |
+| Network log for `flow-content` / `.mp4` | Empty — media requests are not captured |
+| `browse download` on the `/asb/` asset URL | **Crashed the browse daemon twice in a row** |
+| Re-capture the `/asb/` URL headless | Media never loads without a visible render |
+
+**Read:** Chromium under CDP automation is refusing downloads to disk, and Flow's player does not expose a durable media element. This is a harness limitation, not a Flow limitation.
+
+**The unblock:** one manual click. The headed window is open on the project. User clicks the download icon → 1080p Upscaled, the file lands in ~/Downloads, and everything after that (assembly, captions, voiceover, posting) is fully automated again.
+
+**Do not spend more agent time on automated extraction.** It cost a large share of this session and produced nothing. One human click costs seconds.
+
+### 2.8 Still true from earlier
+
+ffmpeg 9.0.1 is installed and has zoompan, xfade, overlay, concat, amix, adelay. It does **not** have `drawtext` (no libfreetype), so all text must be composited as rendered PNG layers rather than burned by ffmpeg. Premium macOS voices are still not installed; only the 43 basic voices are available, and Rishi (en_IN) is the best fit for this audience.
